@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit Notification</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    p {
+      color: #aaa;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .status {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .status.success {
+      background: #0d3320;
+      color: #4ade80;
+      border: 1px solid #166534;
+      display: block;
+    }
+
+    .status.error {
+      background: #3b1219;
+      color: #f87171;
+      border: 1px solid #7f1d1d;
+      display: block;
+    }
+
+    .status.loading {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>You're here</h1>
+    <p>
+      By visiting this page, your IP address will be sent to the site owner.
+      This is intentional and happens automatically.
+    </p>
+    <div id="status" class="status loading">Sending notification...</div>
+  </div>
+
+  <script>
+    // Automatically notify on page load (visitor can see the message)
+    async function notify() {
+      const statusEl = document.getElementById('status');
+      try {
+        const res = await fetch('/notify', { method: 'POST' });
+        const data = await res.json();
+
+        if (data.success) {
+          statusEl.textContent = 'Notification sent.';
+          statusEl.className = 'status success';
+        } else {
+          statusEl.textContent = data.message || 'Something went wrong.';
+          statusEl.className = 'status error';
+        }
+      } catch (err) {
+        statusEl.textContent = 'Could not reach server.';
+        statusEl.className = 'status error';
+      }
+    }
+
+    // Run as soon as the page loads
+    notify();
+  </script>
+</body>
+</html>
