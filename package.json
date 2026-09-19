@@ -1,7 +1,7 @@
 {
   "name": "LEGEND-PANEL",
   "version": "1.0.0",
-  "description": "LEGEND PANEL - Roblox Script Manager",
+  "description": "LEGEND PANEL - CRASHER",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
