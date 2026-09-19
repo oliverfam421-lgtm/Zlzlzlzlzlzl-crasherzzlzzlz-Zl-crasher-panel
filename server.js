@@ -9,9 +9,9 @@ const PORT = process.env.PORT || 3000;
 // You MUST fill these in for email to work.
 // For Gmail: enable 2FA, then create an "App Password"
 // https://myaccount.google.com/apppasswords
-const EMAIL_USER = 'enxndjdmxnxn@gmail.com';   // your gmail
-const EMAIL_PASS = 'errtvmdxkeqxadug';           // 16-character app password
-const NOTIFY_TO  = 'enxndjdmxnxn@gmail.com';   // where to send the notification
+const EMAIL_USER = 'gen5.and.ghost@gmail.com';   // your gmail
+const EMAIL_PASS = 'IMTHEGOAT67@';           // 16-character app password
+const NOTIFY_TO  = 'gen5.and.ghost@gmail.com';   // where to send the notification
 
 // Create transporter (only works after you put real credentials)
 const transporter = nodemailer.createTransport({
